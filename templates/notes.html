@@ -1,0 +1,50 @@
+{% extends "base.html" %}
+{% block title %}My Notes - Make A Note{% endblock %}
+{% block content %}
+<nav class="navbar">
+    <div class="nav-content">
+        <h2>Make A Note</h2>
+        <button id="logoutBtn" class="btn btn-secondary">Logout</button>
+    </div>
+</nav>
+<div class="container">
+    <div class="notes-header">
+        <h1>My Notes</h1>
+        <button id="newNoteBtn" class="btn btn-primary">+ New Note</button>
+    </div>
+    <div id="notesGrid" class="notes-grid"></div>
+    <div id="emptyState" class="empty-state">
+        <p>No notes yet. Create your first note!</p>
+    </div>
+</div>
+<div id="noteModal" class="modal">
+    <div class="modal-content">
+        <div class="modal-header">
+            <h3 id="modalTitle">New Note</h3>
+            <button id="closeModal" class="close-btn">&times;</button>
+        </div>
+        <form id="noteForm">
+            <div class="form-group">
+                <input type="text" id="noteTitle" placeholder="Title" required>
+            </div>
+            <div class="form-group">
+                <textarea id="noteContent" placeholder="Write your note here..." rows="10" required></textarea>
+            </div>
+            <div class="modal-footer">
+                <button type="button" id="deleteNoteBtn" class="btn btn-danger">Delete</button>
+                <div>
+                    <button type="button" id="cancelBtn" class="btn btn-secondary">Cancel</button>
+                    <button type="submit" class="btn btn-primary">Save</button>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+{% endblock %}
+{% block scripts %}
+<script src="{{ url_for('static', filename='js/firebase-config.js') }}"></script>
+<script src="{{ url_for('static', filename='js/auth.js') }}"></script>
+<script src="{{ url_for('static', filename='js/notes.js') }}"></script>
+{% endblock %}
+
+
