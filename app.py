@@ -15,8 +15,10 @@ if not firebase_admin._apps:
     if fbCredJson:
         credDict = json.loads(fbCredJson)
         cred = credentials.Certificate(credDict)
-    else:
+    elif os.path.exists('firebase-config.json'):
         cred = credentials.Certificate('firebase-config.json')
+    else:
+        raise ValueError('FIREBASE_CREDENTIALS environment variable or firebase-config.json file is required')
     firebase_admin.initialize_app(cred)
 
 db = firestore.client()
